@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
 }
+
 body {
   display: flex;
   flex-direction: column;
@@ -11,6 +12,7 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
 }
+
 .continer {
   padding: 1%;
   background-color: #f8f8ff;
@@ -23,6 +25,7 @@ body {
   margin-top: 10%;
   box-shadow: rgba(0, 0, 0, 0.24) 1px 3px 8px;
 }
+
 .title {
   display: flex;
   padding: 2%;
@@ -30,15 +33,18 @@ body {
   border-bottom: solid #9b979736 1px;
   width: 100%;
 }
+
 .title span {
   color: #9b9797e3;
 }
+
 .add {
   width: 100%;
   display: flex;
   justify-content: space-between;
   border-bottom: solid #9b979736 1px;
 }
+
 .add #add-item {
   background: none;
   border: none;
@@ -47,6 +53,7 @@ body {
   outline: none;
   margin-top: 1%;
 }
+
 .add #enter {
   outline: none;
   background: none;
@@ -55,11 +62,13 @@ body {
   padding: 1%;
   margin: 1%;
 }
+
 .list {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
+
 .list .mystyle {
   width: 100%;
   padding: 2%;
@@ -69,19 +78,23 @@ body {
   align-items: center;
   border-bottom: solid #9b979736 1px;
 }
+
 .list .mystyle .input {
   width: 50%;
   text-align: left;
   display: flex;
   align-items: center;
 }
+
 .list .mystyle .input .check {
   padding: 3%;
   margin: 3%;
 }
+
 .list .mystyle span {
   color: #9b9797e3;
 }
+
 .clear-btn {
   background: none;
   outline: none;
