@@ -1,6 +1,5 @@
 import './style.css';
 import getTasks, { addTask } from './functions.js';
-
 import statueUdpdateLS, { statueUdpdateUI } from './interactive.js';
 
 const tasks = [
@@ -27,17 +26,28 @@ function display() {
   tasks.forEach((task) => {
     addItem(task);
   });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    if (getTasks().length === 0) {
+      addTask(tasks[0]);
+      addTask(tasks[1]);
+      addTask(tasks[2]);
+    }
+  });
+  const checkbox = document.querySelector('.list');
+  checkbox.addEventListener('change', (e) => {
+    const task = document.querySelector(`#${e.target.id}`);
+    statueUdpdateLS(e);
+    statueUdpdateUI(task);
+  });
 }
 display();
-window.addEventListener('DOMContentLoaded', () => {
-  if (getTasks().length === 0) {
-    addTask(tasks[0]);
-    addTask(tasks[1]);
-    addTask(tasks[2]);
-  }
-});
-const checkbox = document.querySelector('.list');
-checkbox.addEventListener('change', (e) => {
-  statueUdpdateLS(e);
-  statueUdpdateUI(e);
-});
+
+// const load = () => {
+//   window.onload = () => {
+//     if (localStorage.getItem('tasks') !== null) {
+
+//     }
+//   };
+// };
+// load();

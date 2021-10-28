@@ -16,13 +16,19 @@ export default function statueUdpdateLS(e) {
   });
 }
 
-export function statueUdpdateUI(e) {
-  const tasx = e.target;
-  if (tasx.checked) {
-    const label = tasx.parentElement.id;
-    document.querySelector(`#${label}`).style.textDecoration = 'line-through';
-  } else {
-    const label = tasx.parentElement.id;
-    document.querySelector(`#${label}`).style.textDecoration = 'none';
-  }
+export function statueUdpdateUI(task) {
+  const data = getTasks();
+  data.forEach((element) => {
+    if (task.id === `item${element.index}`) {
+      if (element.completed) {
+        const label = task.parentElement.id;
+        document.querySelector(`#${label}`).style.textDecoration = 'line-through';
+        document.querySelector(`#${task.id}`).checked = true;
+      } else {
+        const label = task.parentElement.id;
+        document.querySelector(`#${label}`).style.textDecoration = 'none';
+        document.querySelector(`#${task.id}`).checked = false;
+      }
+    }
+  });
 }
