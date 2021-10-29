@@ -86,6 +86,10 @@ body {
   align-items: center;
 }
 
+.list .mystyle .input.complete {
+  text-decoration: line-through;
+}
+
 .list .mystyle .input .check {
   padding: 3%;
   margin: 3%;
