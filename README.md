@@ -1,9 +1,8 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-## To DO /÷سف
+## To DO list
 
-> in this project, I will set up the first milestone in the process of creating My website. My goal here is to master n order to lay out the elements on the page you should use Flexbox in all 2 sections.
-> You don't need to implement any functionality that requires JavaScript, like opening the menu or creating dropdowns.
+>In this project, you will add some functionality to your application to make it interactive. The user will also be able to mark task completion by selecting the corresponding checkbox (or undo it by unchecking the checkbox). The updated tasks list will be stored in local storage.
 
 ## To get a local copy up and running follow these simple example steps.
 
