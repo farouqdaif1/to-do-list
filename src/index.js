@@ -7,6 +7,7 @@ const tasks = [
   { description: 'complete to do ', completed: false, index: 1 },
   { description: 'wash the dashes', completed: false, index: 2 },
 ];
+const sorteddata = getTasks();
 const addItem = (task) => {
   const list = document.querySelector('.list');
   const div = document.createElement('div');
@@ -20,34 +21,32 @@ const addItem = (task) => {
     more_vert
     </span>`;
   list.appendChild(div);
+  if (task.completed) {
+    document.querySelector(`#item${task.index}`).checked = true;
+    document.querySelector(`#item${task.index}`).parentElement.classList.add('complete');
+  } else {
+    document.querySelector(`#item${task.index}`).parentElement.classList.remove('complete');
+    document.querySelector(`#item${task.index}`).checked = false;
+  }
 };
 
 function display() {
-  tasks.forEach((task) => {
+  sorteddata.forEach((task) => {
     addItem(task);
   });
-
-  window.addEventListener('DOMContentLoaded', () => {
-    if (getTasks().length === 0) {
-      addTask(tasks[0]);
-      addTask(tasks[1]);
-      addTask(tasks[2]);
-    }
-  });
-  const checkbox = document.querySelector('.list');
-  checkbox.addEventListener('change', (e) => {
-    const task = document.querySelector(`#${e.target.id}`);
-    statueUdpdateLS(e);
-    statueUdpdateUI(task);
-  });
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (getTasks().length === 0) {
+    addTask(tasks[0]);
+    addTask(tasks[1]);
+    addTask(tasks[2]);
+  }
+});
+const checkbox = document.querySelector('.list');
+checkbox.addEventListener('change', (e) => {
+  const task = document.querySelector(`#${e.target.id}`);
+  statueUdpdateLS(e);
+  statueUdpdateUI(task);
+});
 display();
-
-// const load = () => {
-//   window.onload = () => {
-//     if (localStorage.getItem('tasks') !== null) {
-
-//     }
-//   };
-// };
-// load();
