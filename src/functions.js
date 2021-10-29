@@ -14,3 +14,17 @@ export function addTask(data) {
   sortedTasks.push(data);
   localStorage.setItem('tasks', JSON.stringify(sortedTasks));
 }
+export function clear() {
+  document.querySelector('#add-item').value = '';
+}
+
+// to creat object
+let index = 0;
+export function creatObj(descraption) {
+  const obj = {};
+  obj.completed = false;
+  obj.description = descraption;
+  index += 1;
+  obj.index = index;
+  return obj;
+}
