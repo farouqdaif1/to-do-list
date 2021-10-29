@@ -12,6 +12,7 @@ const addItem = (task) => {
   const list = document.querySelector('.list');
   const div = document.createElement('div');
   div.classList.add('mystyle');
+  div.innerHTML += '';
   div.innerHTML = `
     <div class="input" id="box${task.index}" >
     <input type="checkbox" id="item${task.index}" class="check"  name="item${task.index}" >
@@ -31,18 +32,25 @@ const addItem = (task) => {
 };
 
 function display() {
-  sorteddata.forEach((task) => {
-    addItem(task);
-  });
+  if (sorteddata.length === 0) {
+    tasks.forEach((task) => {
+      addItem(task);
+      addTask(task);
+    });
+  } else {
+    sorteddata.forEach((x) => {
+      addItem(x);
+    });
+  }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  if (getTasks().length === 0) {
-    addTask(tasks[0]);
-    addTask(tasks[1]);
-    addTask(tasks[2]);
-  }
-});
+// window.addEventListener('DOMContentLoaded', () => {
+//   if (getTasks().length === 0) {
+//     addTask(tasks[0]);
+//     addTask(tasks[1]);
+//     addTask(tasks[2]);
+//   }
+// });
 const checkbox = document.querySelector('.list');
 checkbox.addEventListener('change', (e) => {
   const task = document.querySelector(`#${e.target.id}`);
