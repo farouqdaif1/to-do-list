@@ -1,11 +1,11 @@
-import getTasks from './functions.js';
+import getDataLS from './localstorage.js';
 
-export default function statueUdpdateLS(e) {
-  const tasx = e.target;
-  const data = getTasks();
+// add checked to Local storage
+export default function statueUdpdateLS(task) {
+  const data = getDataLS();
   data.forEach((element, i) => {
-    if (tasx.id === `item${data[i].index}`) {
-      if (tasx.checked) {
+    if (task.id === `item${element.index}`) {
+      if (task.checked) {
         data[i].completed = true;
         localStorage.setItem('tasks', JSON.stringify(data));
       } else {
@@ -15,19 +15,16 @@ export default function statueUdpdateLS(e) {
     }
   });
 }
-
+// add checked to UI
 export function statueUdpdateUI(task) {
-  const data = getTasks();
+  const data = getDataLS();
   data.forEach((element) => {
     if (task.id === `item${element.index}`) {
       if (element.completed) {
-        const label = task.parentElement.id;
-        document.querySelector(`#${label}`).style.textDecoration = 'line-through';
-        document.querySelector(`#${task.id}`).checked = true;
+        document.querySelector(`#${task.id}`).parentElement.style.textDecoration = 'line-through';
       } else {
-        const label = task.parentElement.id;
-        document.querySelector(`#${label}`).style.textDecoration = 'none';
-        document.querySelector(`#${task.id}`).checked = false;
+        const label = task.parentElement;
+        label.style.textDecoration = 'none';
       }
     }
   });

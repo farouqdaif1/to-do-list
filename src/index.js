@@ -1,60 +1,58 @@
 import './style.css';
-import getTasks, { addTask } from './functions.js';
 import statueUdpdateLS, { statueUdpdateUI } from './interactive.js';
+import addItemUI, { diplayTask, clear } from './uImanpulate.js';
+import Task from './task.js';
+import getDataLS, { addTaskLS, indexValue, remove } from './localstorage.js';
+import editText from './add-remove.js';
 
-const tasks = [
-  { description: 'wash the dashes', completed: false, index: 0 },
-  { description: 'complete to do ', completed: false, index: 1 },
-  { description: 'wash the dashes', completed: false, index: 2 },
-];
-const sorteddata = getTasks();
-const addItem = (task) => {
-  const list = document.querySelector('.list');
-  const div = document.createElement('div');
-  div.classList.add('mystyle');
-  div.innerHTML += '';
-  div.innerHTML = `
-    <div class="input" id="box${task.index}" >
-    <input type="checkbox" id="item${task.index}" class="check"  name="item${task.index}" >
-    <label for="item${task.index}">${task.description}</label >
-    </div>
-    <span  class="material-icons">
-    more_vert
-    </span>`;
-  list.appendChild(div);
-  if (task.completed) {
-    document.querySelector(`#item${task.index}`).checked = true;
-    document.querySelector(`#item${task.index}`).parentElement.classList.add('complete');
-  } else {
-    document.querySelector(`#item${task.index}`).parentElement.classList.remove('complete');
-    document.querySelector(`#item${task.index}`).checked = false;
+document.addEventListener('DOMContentLoaded', diplayTask);
+const list = document.querySelector('.list');
+document.querySelector('#enter').addEventListener('click', (e) => {
+  if (e.target.classList.contains('add-item')) {
+    const Input = document.querySelector('#add-item').value;
+    const index = getDataLS().length + 1;
+    const task = new Task(Input, index, false);
+    addTaskLS(task);
+    addItemUI(task);
+    clear();
   }
-};
-
-function display() {
-  if (sorteddata.length === 0) {
-    tasks.forEach((task) => {
-      addItem(task);
-      addTask(task);
-    });
-  } else {
-    sorteddata.forEach((x) => {
-      addItem(x);
-    });
-  }
-}
-
-// window.addEventListener('DOMContentLoaded', () => {
-//   if (getTasks().length === 0) {
-//     addTask(tasks[0]);
-//     addTask(tasks[1]);
-//     addTask(tasks[2]);
-//   }
-// });
-const checkbox = document.querySelector('.list');
-checkbox.addEventListener('change', (e) => {
-  const task = document.querySelector(`#${e.target.id}`);
-  statueUdpdateLS(e);
-  statueUdpdateUI(task);
 });
-display();
+list.addEventListener('change', (e) => {
+  if (e.target.classList.contains('check')) {
+    const task = document.querySelector(`#${e.target.id}`);
+    const taskx = e.target;
+    statueUdpdateLS(taskx);
+    statueUdpdateUI(task);
+  }
+});
+list.addEventListener('click', (e) => {
+  if (e.target.classList.contains('delete')) {
+    remove(e.target.id);
+    e.target.parentElement.parentElement.remove();
+    window.location.reload();
+    indexValue();
+  }
+});
+document.querySelector('.clear-btn').addEventListener('click', () => {
+  let data = getDataLS();
+  data = data.filter((task) => !task.completed);
+  localStorage.setItem('tasks', JSON.stringify(data));
+  indexValue();
+  window.location.reload();
+});
+list.addEventListener('click', (e) => {
+  const x = e.target.parentElement.previousSibling;
+  if (e.target.classList.contains('edit')) {
+    x.children[1].classList.add('none');
+    x.children[2].classList.remove('none');
+    x.children[2].classList.add('new');
+    x.children[2].addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        x.children[1].textContent = x.children[2].value;
+        x.children[1].classList.remove('none');
+        x.children[2].classList.add('none');
+        editText(x.children[2].value, x.children[1].classList.value);
+      }
+    });
+  }
+});
