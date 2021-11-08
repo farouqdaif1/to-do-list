@@ -65,37 +65,31 @@ body {
 
 .list {
   width: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
-.list .mystyle {
-  width: 100%;
-  padding: 2%;
-  margin-top: 1%;
+.list-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 2%;
+  margin-top: 1%;
   border-bottom: solid #9b979736 1px;
+  text-align: center;
 }
 
-.list .mystyle .input {
-  width: 50%;
-  text-align: left;
+.list-item .list-label {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.list .mystyle .input.complete {
+.list .list-item .list-label.complete {
   text-decoration: line-through;
 }
 
-.list .mystyle .input .check {
-  padding: 3%;
-  margin: 3%;
-}
-
-.list .mystyle span {
+.list-item .div-man {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #9b9797e3;
 }
 
@@ -107,4 +101,9 @@ body {
   margin: 1%;
   font-size: 17px;
   color: #9b9797e3;
+  text-align: center;
+}
+
+.none {
+  display: none;
 }
